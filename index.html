@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A-Frame</title>
+    <meta name="description" content="A-Frame">
+    <meta name="apple-mobile-web-app-capable"/>
+    <script src="https://aframe.io/releases/0.3.1/aframe.min.js"></script>
+  </head>
+  <body>
+
+    <a-scene fog="type: exponential; color: #eee; density: 0.00025">
+      <a-assets>
+        <img id="my-image" src="img/avensia.png"/>
+        <img id="easter-egg" src="img/Mother-Of-God.jpg"/>
+        <img id="grass" src="img/grass.jpg"/>
+        <img id="sky" src="img/sky.jpg"/>
+        <video id="workingatavensia" loop="true" src="img/workingatavensia.mp4"/>
+        <video id="3" loop="true" src="img/workingatavensia.mp4" webkit-playsinline />
+        <a-animation attribute="rotation"
+               dur="10000"
+               fill="forwards"
+               to="0 360 0"
+               repeat="indefinite"></a-animation>
+     </a-assets>
+     <a-entity id="river" geometry="primitive: plane" material="color: blue"
+          position="0 -2 -6" sound="src: url(img/indi.mp4); autoplay: true"></a-entity>
+
+      <!-- Textured circle parallel to ground. -->
+      <a-circle src="#grass" radius="15" rotation="-90 0 0"></a-circle>
+      <!-- Red directional light shining from the top left. -->
+      <a-light color="#ECECEC" position="-1 5 3"></a-light>
+      <a-light color="blue" penumbra="0.5" ground-color="black" position="1 3 0"></a-light>
+      <a-image position="0 3 -5.9" width="5" src="#my-image"></a-image>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-plane position="0 2 -6" rotation="" width="6" height="4" color="#7BC8A4"></a-plane>
+      <a-plane position="0 2 -6.5" rotation="0 180 0" width="6" height="4" color="#7BC8A4"></a-plane>
+      <a-sky src="#sky"></a-sky>
+      <a-image position="0 1.5 -6.51" width="1.5" rotation="0 180 0" src="#easter-egg"></a-image>
+      <!--<a-video src="#penguin-sledding" width="6" height="3" position="0 0 -5.9"></a-video>
+    -->
+    </a-scene>
+
+  </body>
+</html>
