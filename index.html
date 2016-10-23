@@ -2,70 +2,77 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>A-Frame</title>
+    <title>A-Frame boilerplate</title>
     <meta name="description" content="A-Frame">
     <meta name="apple-mobile-web-app-capable"/>
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
   </head>
   <body>
 
-    <a-scene fog="type: exponential; color: #eee; density: 0.00025">
+    <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js" stats>
       <a-assets>
-        <img id="my-image" src="img/avensia.png"/>
-        <img id="easter-egg" src="img/Mother-Of-God.jpg"/>
-        <img id="grass" src="img/grass.jpg"/>
-        <img id="sky" src="img/sky.jpg"/>
-        <video id="workingatavensia" loop="true" src="img/workingatavensia.mp4"/>
-        <video id="3" loop="true" src="img/workingatavensia.mp4" webkit-playsinline />
+        <!-- Define images -->
+        <img id="Avensia" src="img/avensia.png"/>
+        <img id="grass" src="grass.jpg"/>
+        <img id="sky" src="img/sky3.jpg"/>
+
+        <!-- Define videos -->
+
+        <!-- Define animations -->
         <a-animation attribute="rotation"
                dur="10000"
                fill="forwards"
                to="0 360 0"
                repeat="indefinite"></a-animation>
+        <!-- Todo: define more, useful animations -->
 
+        <!-- Define Objects -->
+        <!-- Example object -->
+        <a-asset-item id="dummy-mtl" src="/assets/dummy_obj/dummy_obj.mtl"></a-asset-item>
+        <a-asset-item id="dummy-obj" src="/assets/dummy_obj/dummy_obj.obj"></a-asset-item>
 
-        <a-asset-item id="object" src="/assets/Converse_obj/converse_obj.obj"></a-asset-item>
-        <a-asset-item id="material" src="/assets/Converse_obj/converse_obj.mtl"></a-asset-item>
+        <a-asset-item id="shoes-mtl" src="/assets/Converse_obj/converse_obj.mtl"></a-asset-item>
+        <a-asset-item id="shoes-obj" src="/assets/Converse_obj/converse_obj.obj"></a-asset-item>
+        
+        <!-- Todo: define more objects -->
 
-        <!--<a-asset-item id="crate-obj" src="crate.obj"></a-asset-item>
-        <a-asset-item id="crate-mtl" src="crate.mtl"></a-asset-item>-->
      </a-assets>
-     <!--<a-entity id="river" geometry="primitive: plane" material="color: blue"
-          position="0 -2 -6" sound="src: url(img/indi.mp4); autoplay: true"></a-entity>-->
 
-      <!-- Textured circle parallel to ground. -->
-      <a-circle src="#grass" radius="15" rotation="-90 0 0"></a-circle>
-      <!-- Red directional light shining from the top left. -->
+      <!--Ground -->
+      <a-plane src="#grass"  material="repeat: 100 100"  height="200" width="200" rotation="-90 0 0"></a-plane>
 
-      <a-image position="0 3 -5.9" width="5" src="#my-image"></a-image>
+      <!-- Sky -->
+      <a-sky src="#sky"></a-sky>
 
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9">
+      <!-- Lighting -->
+      <!-- Todo -->
 
+      <a-image position="0 3 -5.9" width="5" src="#Avensia"></a-image>
+
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" onclick="toggleCategory(1)">
+        <a-animation attribute="rotation" begin="click"  to="0 -135 0"></a-animate>
+        <a-event name="mouseenter" scale="4 1 6"></a-event>
+      </a-box>
+
+      <a-box position="1 0.5 -3" rotation="0 45 0" color="red" onclick="toggleCategory(2)">
         <a-animation attribute="rotation" begin="click"  to="0 -135 0"></a-animate>
         <a-event name="mouseenter" scale="4 1 6"></a-event>
       </a-box>
 
       <a-plane position="0 2 -6" rotation="" width="6" height="4" color="#7BC8A4"></a-plane>
-      <a-plane position="0 2 -6.5" rotation="0 180 0" width="6" height="4" color="#7BC8A4"></a-plane>
-      <a-sky src="#sky"></a-sky>
-      <a-image position="0 1.5 -6.51" width="1.5" rotation="0 180 0" src="#easter-egg"></a-image>
-      <!--<a-video src="#penguin-sledding" width="6" height="3" position="0 0 -5.9"></a-video>
-    -->
+      <a-plane position="0 2 -6.1" rotation="0 180 0" width="6" height="4" color="#7BC8A4"></a-plane>
+      
+      <a-obj-model id="dummy1" class="category1 category" visible="false" src="#dummy-obj" onclick="toggleSize(this)"  position="-1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
+      <a-obj-model id="dummy2" class="category1 category" visible="false" src="#dummy-obj" onclick="toggleSize(this)" position="1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
 
-<!--
-      <a-obj-model src="#object" mtl="#material" position="0 1 -2" scale="0.05 0.05 0.05"></a-obj-model>-->
-      <a-obj-model src="/assets/dummy_obj/dummy_obj.obj" position="0 0 -2" mtl="/assets/dummy_obj/dummy_obj.mtl" scale="0.01 0.01 0.01">
-        <a-animation attribute="rotation" begin="click"  to="0 -360 0"></a-animate>
-        <a-event name="mouseenter" scale="4 1 6"></a-event>
-      </a-obj-model>
-
-      <!--        <a-animation attribute="rotation" begin="click" dur="6000" to="0 360 0"></a-animate>
-        <a-event name="mouseenter" scale="4 1 6"></a-event>-->
+      <a-obj-model id="shoe1" class="category2 category" visible="false" src="#shoes-obj" onclick="toggleSize(this)"  position="-1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
+      <a-obj-model id="shoe2" class="category2 category" visible="false" src="#shoes-obj" onclick="toggleSize(this)" position="1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
 
       <a-camera position="0 7 5">
         <a-cursor color="blue"></a-cursor>
       </a-camera>
 
     </a-scene>
+    <script src="app.js"></script>
   </body>
 </html>
