@@ -29,10 +29,15 @@ function toggleVisibility(objectModel){
     objectModel.getAttribute('visible') ? objectModel.setAttribute('visible', false) + hide(objectModel): objectModel.setAttribute('visible', true) + show(objectModel);
 }
 
+var previousCategoryId = null;
+
 function toggleCategory(id){
+    if (previousCategoryId && previousCategoryId !== id) {
+        toggleCategory(previousCategoryId);
+    }
     var elements = document.getElementsByClassName('category' + id);
     for(let i = 0; i < elements.length; i++){
         toggleVisibility(elements[i]);
     }
+    previousCategoryId = previousCategoryId === id ? null : id;
 }
-
