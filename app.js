@@ -13,6 +13,8 @@ var none = {x: 0, y: 0, z: 0};
 //     }
 // }
 
+var cart = [];
+
 function toggleSize(event){
     event.getAttribute('scale') === small ? event.setAttribute('scale', large) : event.setAttribute('scale', small);
 }
@@ -36,3 +38,16 @@ function toggleCategory(id){
     }
 }
 
+function addToCart(object){
+	cart.push(object);
+	console.log(cart);
+    toggleBuyLabel();
+    document.getElementById("cart-label").setAttribute('bmfont-text', 'text: ' + cart.length + ' items in cart!')
+}
+
+function toggleBuyLabel(){
+    document.getElementById("cart-added-label").setAttribute('scale', '1 1 1');
+    setTimeout(function() {
+        document.getElementById("cart-added-label").setAttribute('scale', '0 0 0')
+    }, 2000);
+}

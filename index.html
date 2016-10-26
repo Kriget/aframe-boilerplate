@@ -6,6 +6,7 @@
     <meta name="description" content="A-Frame">
     <meta name="apple-mobile-web-app-capable"/>
     <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
   </head>
   <body>
 
@@ -45,7 +46,7 @@
       <a-sky src="#sky"></a-sky>
 
       <!-- Lighting -->
-      <!-- Todo -->
+      <!-- Todo --> 
 
       <a-image position="0 3 -5.9" width="5" src="#Avensia"></a-image>
 
@@ -62,15 +63,18 @@
       <a-plane position="0 2 -6" rotation="" width="6" height="4" color="#7BC8A4"></a-plane>
       <a-plane position="0 2 -6.1" rotation="0 180 0" width="6" height="4" color="#7BC8A4"></a-plane>
       
-      <a-obj-model id="dummy1" class="category1 category" visible="false" src="#dummy-obj" onclick="toggleSize(this)"  position="-1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
-      <a-obj-model id="dummy2" class="category1 category" visible="false" src="#dummy-obj" onclick="toggleSize(this)" position="1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
+      <a-obj-model id="dummy1" class="category1 category" visible="false" src="#dummy-obj" onclick="addToCart(this)"  position="-1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
+      <a-obj-model id="dummy2" class="category1 category" visible="false" src="#dummy-obj" onclick="addToCart(this)" position="1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
 
-      <a-obj-model id="shoe1" class="category2 category" visible="false" src="#shoes-obj" onclick="toggleSize(this)"  position="-1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
-      <a-obj-model id="shoe2" class="category2 category" visible="false" src="#shoes-obj" onclick="toggleSize(this)" position="1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
+      <a-obj-model id="shoe1" class="category2 category" visible="false" src="#shoes-obj" onclick="addToCart(this)"  position="-1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
+      <a-obj-model id="shoe2" class="category2 category" visible="false" src="#shoes-obj" onclick="addToCart(this)" position="1 0 -2" mtl="#dummy-mtl" scale="0.01 0.01 0.01"></a-obj-model>
 
       <a-camera position="0 7 5">
         <a-cursor color="blue"></a-cursor>
       </a-camera>
+
+      <a-entity bmfont-text="text: 0 items in cart!" position="-0.3 2 -5" id="cart-label"></a-entity>
+      <a-entity bmfont-text="text: Added to cart!" position="-0.2 1.7 -5" id="cart-added-label"></a-entity>
 
     </a-scene>
     <script src="app.js"></script>
